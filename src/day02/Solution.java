@@ -1,44 +1,51 @@
 package day02;
 
 import java.io.*;
-import java.util.*;
-import java.text.*;
 import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
 import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+    /*
+     * Complete the 'solve' function below.
+     *
+     * The function accepts following parameters:
+     *  1. DOUBLE meal_cost
+     *  2. INTEGER tip_percent
+     *  3. INTEGER tax_percent
+     */
+
+    public static void solve(double meal_cost, int tip_percent, int tax_percent) {
+        // Write your code here
+        DecimalFormat decimalFormat = new DecimalFormat("##0");
+        double tip_value = meal_cost * tip_percent / 100;
+        double tax_value = meal_cost * tax_percent / 100;
+        System.out.println(decimalFormat.format(meal_cost + tip_value + tax_value));
+    }
+
+}
 
 public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) {
-        int i = 4;
-        double d = 4.0;
-        String s = "HackerRank ";
+        double meal_cost = Double.parseDouble(bufferedReader.readLine().trim());
 
-        Scanner scan = new Scanner(System.in);
+        int tip_percent = Integer.parseInt(bufferedReader.readLine().trim());
 
-        /* Declare second integer, double, and String variables. */
-        int i2;
-        double d2;
-        String s2;
+        int tax_percent = Integer.parseInt(bufferedReader.readLine().trim());
 
-        /* Read and save an integer, double, and String to your variables.*/
-        i2 = scan.nextInt();
-        d2 = scan.nextDouble();
-        scan.nextLine();
-        s2 = scan.nextLine();
+        Result.solve(meal_cost, tip_percent, tax_percent);
 
-        // Note: If you have trouble reading the entire String, please go back and review the Tutorial closely.
-
-
-        /* Print the sum of both integer variables on a new line. */
-        System.out.println(i + i2);
-
-        /* Print the sum of the double variables on a new line. */
-        System.out.println(d + d2);
-
-        /* Concatenate and print the String variables on a new line;
-        	the 's' variable above should be printed first. */
-        System.out.println(s + s2);
-
-        scan.close();
+        bufferedReader.close();
     }
 }
+
